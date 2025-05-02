@@ -18,22 +18,29 @@ public:
 class Tree
 {
 public:
-    void BFS(Node *root)
+    vector<vector<int>> BFS(Node *root)
     {
         queue<Node *> q;
+        vector<vector<int>>ans;
         if (root)
         {
             q.push(root);
         }
         while (!q.empty())
         {
-            Node *temp = q.front();
-            q.pop();
-            cout << temp->data << " ";
-            if (temp->left)
-                q.push(temp->left);
-            if (temp->right)
-                q.push(temp->right);
+            int size = q.size();
+            vector<int> level;
+            for (int i = 0; i < size; i++)
+            {
+                Node *temp = q.front();
+                q.pop();
+                level.push_back(temp->data);
+                if (temp->left)
+                    q.push(temp->left);
+                if (temp->right)
+                    q.push(temp->right);
+            }
+            ans.push_back(level);
         }
     }
     void InOrderTraverse(Node *root)
